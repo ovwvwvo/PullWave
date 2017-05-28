@@ -13,7 +13,7 @@ import rx.Observable;
  * Copyright ©2017 by rawer
  */
 
-public interface LoadDataApi {
+public interface ApiStore {
 
     @GET("get.php?json=1")
     Observable<DataResponse> getData(@Query("auth_usr") String name, @QueryMap Map<String, String> param, @Query("end_date") String date);

@@ -6,6 +6,7 @@ import java.util.Map;
 
 import rx.Observable;
 
+
 /**
  * Copyright ©2017 by rawer
  */
@@ -13,5 +14,4 @@ import rx.Observable;
 public interface LoadRepo {
 
     Observable<DataResponse> fetchData(String name, Map<String, String> param, String data);
-
 }

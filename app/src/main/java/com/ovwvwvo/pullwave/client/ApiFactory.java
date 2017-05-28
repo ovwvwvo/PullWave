@@ -8,14 +8,14 @@ public class ApiFactory {
 
     private static ApiFactory mDefault = new ApiFactory();
 
-    private final LoadApiBuilder<LoadDataApi> mLoadApiBuilder = new LoadApiBuilder<>();
+    private final ApBuilder mApiBuilder = new ApBuilder();
 
     public static ApiFactory getDefault() {
         return mDefault;
     }
 
-    public LoadDataApi buildLoadDataApi() {
-        return mLoadApiBuilder.buildApiClient();
+    public ApiStore buildLoadDataApi() {
+        return mApiBuilder.buildApiClient();
     }
 
 }

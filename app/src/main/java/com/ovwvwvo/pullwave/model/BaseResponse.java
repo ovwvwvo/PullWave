@@ -5,4 +5,5 @@ package com.ovwvwvo.pullwave.model;
  */
 
 public class BaseResponse {
+
 }

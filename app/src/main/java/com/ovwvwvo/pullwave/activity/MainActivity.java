@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.ovwvwvo.pullwave.R;
+import com.ovwvwvo.pullwave.presenter.LoadDataPresenter;
 
 /**
  * Copyright ©2017 by rawer
@@ -31,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
                     .setAction("Action", null).show();
             }
         });
+        new LoadDataPresenter().loadData("王者荣耀");
     }
 
     @Override
