@@ -1,10 +1,10 @@
 package com.ovwvwvo.pullwave.logic;
 
+import com.ovwvwvo.jkit.utils.DateFormatUtil;
+import com.ovwvwvo.jkit.utils.StringUtil;
 import com.ovwvwvo.pullwave.model.DataResponse;
 import com.ovwvwvo.pullwave.repo.LoadRepo;
 import com.ovwvwvo.pullwave.repoimpl.LoadRepoImpl;
-import com.ovwvwvo.pullwave.utils.DataFormatUtil;
-import com.ovwvwvo.pullwave.utils.StringUtil;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -33,7 +33,7 @@ public class LoadDataLogic {
         for (int i = 0; i < str.length; i++)
             if (!StringUtil.isBlank(str[i]))
                 param.put("w" + i, str[i]);
-        return loadRepo.fetchData(NAME, param, DataFormatUtil.formatDate(new Date(),"yyyy-MM-dd"));
+        return loadRepo.fetchData(NAME, param, DateFormatUtil.formatDate(new Date(),"yyyy-MM-dd"));
     }
 
 }

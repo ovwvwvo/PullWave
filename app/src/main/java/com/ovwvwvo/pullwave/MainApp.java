@@ -2,7 +2,7 @@ package com.ovwvwvo.pullwave;
 
 import android.app.Application;
 
-import com.ovwvwvo.pullwave.utils.AppWrapper;
+import com.ovwvwvo.jkit.AppWrapper;
 
 /**
  * Copyright ©2017 by rawer
