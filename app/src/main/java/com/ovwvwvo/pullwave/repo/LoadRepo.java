@@ -13,5 +13,5 @@ import rx.Observable;
 
 public interface LoadRepo {
 
-    Observable<DataResponse> fetchData(String name, Map<String, String> param, String data);
+    Observable<DataResponse> fetchData(Map<String, String> param, String dateEnd);
 }

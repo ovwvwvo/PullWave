@@ -19,8 +19,6 @@ import rx.Observable;
 
 public class LoadDataLogic {
 
-    private static final String NAME = "rawer";
-
     private LoadRepo loadRepo;
 
     public LoadDataLogic() {
@@ -32,8 +30,8 @@ public class LoadDataLogic {
         Map<String, String> param = new HashMap<>();
         for (int i = 0; i < str.length; i++)
             if (!StringUtil.isBlank(str[i]))
-                param.put("w" + i, str[i]);
-        return loadRepo.fetchData(NAME, param, DateFormatUtil.formatDate(new Date(),"yyyy-MM-dd"));
+                param.put("w" + (i + 1), str[i]);
+        return loadRepo.fetchData(param, DateFormatUtil.formatDate(new Date(), "yyyy-MM-dd"));
     }
 
 }

@@ -1,8 +1,13 @@
 package com.ovwvwvo.pullwave.view;
 
+import com.ovwvwvo.pullwave.model.DataResponse;
+
 /**
  * Copyright ©2017 by rawer
  */
 
-public class LoadDataView {
+public interface LoadDataView {
+
+    void onLoadSuccess(DataResponse response);
+
 }

@@ -15,6 +15,6 @@ import rx.Observable;
 
 public interface ApiStore {
 
-    @GET("get.php?json=1")
-    Observable<DataResponse> getData(@Query("auth_usr") String name, @QueryMap Map<String, String> param, @Query("end_date") String date);
+    @GET("get.php?json=1&auth_usr=free_vip")
+    Observable<DataResponse> getData(@QueryMap Map<String, String> param, @Query("date_end") String dateEnd);
 }

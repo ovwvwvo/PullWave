@@ -23,8 +23,8 @@ public class LoadRepoImpl implements LoadRepo {
     }
 
     @Override
-    public Observable<DataResponse> fetchData(String name, Map<String, String> param, String data) {
-        return apiStore.getData(name, param, data)
+    public Observable<DataResponse> fetchData(Map<String, String> param, String dateEnd) {
+        return apiStore.getData(param, dateEnd)
             .subscribeOn(Schedulers.io());
     }
 }
