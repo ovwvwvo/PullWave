@@ -1,8 +1,10 @@
 apply plugin: 'com.android.application'
+apply plugin: 'realm-android'
 
 android {
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
+
     defaultConfig {
         applicationId "com.ovwvwvo.pullwave"
         minSdkVersion 15
@@ -14,6 +16,10 @@ android {
         jackOptions {
             enabled true
         }
+    }
+
+    lintOptions {
+        abortOnError false
     }
 
     compileOptions {
@@ -49,7 +55,7 @@ dependencies {
     compile 'com.jakewharton:butterknife:8.6.0'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.6.0'
 
-    compile 'com.ovwvwvo:jkit:0.1.5'
+    compile 'com.ovwvwvo:jkit:0.1.6'
 
     testCompile 'junit:junit:4.12'
 }

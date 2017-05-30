@@ -3,12 +3,14 @@ package com.ovwvwvo.pullwave.activity;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.TextView;
 
 import com.ovwvwvo.pullwave.R;
+import com.ovwvwvo.pullwave.adapter.HomeAdapter;
 import com.ovwvwvo.pullwave.model.DataResponse;
 import com.ovwvwvo.pullwave.presenter.LoadDataPresenter;
 import com.ovwvwvo.pullwave.view.LoadDataView;
@@ -23,22 +25,31 @@ public class MainActivity extends AppCompatActivity implements LoadDataView {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
-    @BindView(R.id.tv)
-    TextView textView;
+    @BindView(R.id.recyclerView)
+    RecyclerView recyclerView;
     @BindView(R.id.fab)
     FloatingActionButton fab;
 
     private LoadDataPresenter presenter;
+    private HomeAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        setSupportActionBar(toolbar);
-
-        fab.setOnClickListener(view -> presenter.loadData("王者荣耀"));
+        initView();
         presenter = new LoadDataPresenter(this);
+    }
+
+    private void initView() {
+        setSupportActionBar(toolbar);
+        fab.setOnClickListener(view -> {
+        });
+
+        adapter = new HomeAdapter();
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(adapter);
     }
 
     @Override
@@ -58,6 +69,5 @@ public class MainActivity extends AppCompatActivity implements LoadDataView {
 
     @Override
     public void onLoadSuccess(DataResponse response) {
-        textView.setText(response.getModels().get(0).getV());
     }
 }
