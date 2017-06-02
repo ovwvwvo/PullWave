@@ -21,7 +21,7 @@
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginLeft="@dimen/space_normal"
-        android:layout_marginRight="@dimen/space_normal"/>
+        android:paddingLeft="@dimen/space_normal"
+        android:paddingRight="@dimen/space_normal"/>
 
 </LinearLayout>

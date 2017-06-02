@@ -9,11 +9,15 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.ovwvwvo.jkit.log.LogUtil;
 import com.ovwvwvo.pullwave.R;
 import com.ovwvwvo.pullwave.adapter.HomeAdapter;
 import com.ovwvwvo.pullwave.model.DataResponse;
-import com.ovwvwvo.pullwave.presenter.LoadDataPresenter;
+import com.ovwvwvo.pullwave.model.db.History;
+import com.ovwvwvo.pullwave.presenter.HomePresenter;
 import com.ovwvwvo.pullwave.view.LoadDataView;
+
+import java.util.ListIterator;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -30,7 +34,7 @@ public class MainActivity extends AppCompatActivity implements LoadDataView {
     @BindView(R.id.fab)
     FloatingActionButton fab;
 
-    private LoadDataPresenter presenter;
+    private HomePresenter presenter;
     private HomeAdapter adapter;
 
     @Override
@@ -39,7 +43,8 @@ public class MainActivity extends AppCompatActivity implements LoadDataView {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         initView();
-        presenter = new LoadDataPresenter(this);
+        presenter = new HomePresenter(this);
+        presenter.findHistory();
     }
 
     private void initView() {
@@ -65,6 +70,23 @@ public class MainActivity extends AppCompatActivity implements LoadDataView {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void showProgress() {
+
+    }
+
+    @Override
+    public void hideProgerss() {
+
+    }
+
+    @Override
+    public void onLoadHistorySuccess(ListIterator<History> historys) {
+        while (historys.hasNext()) {
+            LogUtil.d("MainActivity", historys.next().getId());
+        }
     }
 
     @Override
