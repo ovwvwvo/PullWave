@@ -9,7 +9,7 @@ import retrofit2.Retrofit;
  * Copyright ©2017 by rawer
  */
 
-abstract class ApBuilderAbs<T> {
+abstract class ApiBuilderAbs<T> {
 
     abstract Retrofit buildRetrofit();
 

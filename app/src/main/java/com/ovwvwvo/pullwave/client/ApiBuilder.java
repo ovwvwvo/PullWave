@@ -12,7 +12,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * Copyright ©2017 by rawer
  */
 
-public class ApBuilder extends ApBuilderAbs<ApiStore> {
+public class ApiBuilder extends ApiBuilderAbs<ApiStore> {
 
     private static final String BASE_URL = "http://www.pullwave.com";
 

@@ -8,7 +8,7 @@ public class ApiFactory {
 
     private static ApiFactory mDefault = new ApiFactory();
 
-    private final ApBuilder mApiBuilder = new ApBuilder();
+    private final ApiBuilder mApiBuilder = new ApiBuilder();
 
     public static ApiFactory getDefault() {
         return mDefault;
