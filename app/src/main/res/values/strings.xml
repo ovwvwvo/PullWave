@@ -2,5 +2,7 @@
     <string name="app_name">PullWave</string>
     <string name="action_settings">Settings</string>
 
+    <string name="search">输入你要查询的词…</string>
+
     <string name="history">最近查询</string>
 </resources>

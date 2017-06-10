@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="@dimen/space_large_4"
+              android:background="@color/gray"
+              android:orientation="vertical"
+              android:paddingBottom="@dimen/space_small_1"
+              android:paddingLeft="@dimen/space_small_1"
+              android:paddingRight="@dimen/space_small_1">
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/name"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/circular_bead"
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/space_small_1"/>
+</LinearLayout>

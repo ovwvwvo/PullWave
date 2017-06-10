@@ -3,6 +3,7 @@ package com.ovwvwvo.pullwave;
 import android.app.Application;
 
 import com.ovwvwvo.jkit.AppWrapper;
+import com.ovwvwvo.jkit.log.LogUtil;
 
 import io.realm.Realm;
 
@@ -17,6 +18,8 @@ public class MainApp extends Application {
         super.onCreate();
         AppWrapper app = AppWrapper.getInstance();
         app.setAppContext(this);
+        LogUtil.setEnable(BuildConfig.DEBUG);
+
         initRealm();
     }
 

@@ -5,23 +5,46 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/gray"
     android:orientation="vertical"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:ignore="RtlHardcoded"
     tools:showIn="@layout/activity_main">
+
+    <com.ovwvwvo.common.widget.EditText.ClearableEditText
+        android:id="@+id/search_input"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_large_3"
+        android:background="@android:color/white"
+        android:drawableLeft="@drawable/search"
+        android:drawablePadding="@dimen/space_small_1"
+        android:hint="@string/search"
+        android:imeOptions="actionSearch"
+        android:inputType="textAutoComplete"
+        android:maxLines="1"
+        android:paddingLeft="@dimen/space_normal"
+        android:paddingRight="@dimen/space_normal"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"/>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/divider_height"
+        android:background="#ccc"/>
 
     <TextView
         android:layout_width="wrap_content"
-        android:layout_height="@dimen/space_large_3"
+        android:layout_height="wrap_content"
         android:gravity="center"
+        android:paddingBottom="@dimen/space_small_2"
         android:paddingLeft="@dimen/space_normal"
+        android:paddingTop="@dimen/space_small_2"
         android:text="@string/history"
-        android:textSize="@dimen/text_size_small_1"/>
+        android:textAppearance="@style/TextAppearance.ST.Grey"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingLeft="@dimen/space_normal"
-        android:paddingRight="@dimen/space_normal"/>
+        android:background="@color/gray"/>
 
 </LinearLayout>
