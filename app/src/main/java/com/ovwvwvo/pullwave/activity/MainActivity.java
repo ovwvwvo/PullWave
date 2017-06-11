@@ -1,5 +1,6 @@
 package com.ovwvwvo.pullwave.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
@@ -18,10 +19,9 @@ import com.ovwvwvo.jkit.utils.KeyBoardUtils;
 import com.ovwvwvo.jkit.weight.ToastMaster;
 import com.ovwvwvo.pullwave.R;
 import com.ovwvwvo.pullwave.adapter.HomeAdapter;
-import com.ovwvwvo.pullwave.model.DataResponse;
 import com.ovwvwvo.pullwave.model.db.History;
 import com.ovwvwvo.pullwave.presenter.HomePresenter;
-import com.ovwvwvo.pullwave.view.LoadDataView;
+import com.ovwvwvo.pullwave.view.MainView;
 
 import java.util.ListIterator;
 
@@ -31,7 +31,7 @@ import butterknife.ButterKnife;
 /**
  * Copyright ©2017 by rawer
  */
-public class MainActivity extends BaseActivity implements LoadDataView, HomeAdapter.OnClickListener {
+public class MainActivity extends BaseActivity implements MainView, HomeAdapter.OnClickListener {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -65,7 +65,7 @@ public class MainActivity extends BaseActivity implements LoadDataView, HomeAdap
         recyclerView.setOnCreateContextMenuListener(this);
         searchInput.setOnEditorActionListener((v, actionId, event) -> {
             if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-                presenter.loadData(v.getText().toString().trim());
+                handleIntent(v.getText().toString().trim());
                 return true;
             }
             return false;
@@ -114,14 +114,10 @@ public class MainActivity extends BaseActivity implements LoadDataView, HomeAdap
     }
 
     @Override
-    public void onLoadSuccess(DataResponse response) {
-    }
-
-    @Override
     public void onItemClick(String word) {
         searchInput.setText(word);
         searchInput.setSelection(word.length());
-        presenter.loadData(word);
+        handleIntent(word);
     }
 
     @Override
@@ -129,6 +125,12 @@ public class MainActivity extends BaseActivity implements LoadDataView, HomeAdap
         this.word = word;
         KeyBoardUtils.closeKeybord(this, searchInput);
         recyclerView.showContextMenu();
+    }
+
+    private void handleIntent(String word) {
+        Intent intent = new Intent(this, DetailActivity.class);
+        intent.putExtra(DetailActivity.WORD, word);
+        startActivity(intent);
     }
 
 }

@@ -3,7 +3,7 @@ package com.ovwvwvo.pullwave.repoimpl;
 import com.ovwvwvo.pullwave.client.ApiFactory;
 import com.ovwvwvo.pullwave.client.ApiStore;
 import com.ovwvwvo.pullwave.model.DataResponse;
-import com.ovwvwvo.pullwave.repo.LoadRepo;
+import com.ovwvwvo.pullwave.repo.DetailRepo;
 
 import java.util.Map;
 
@@ -14,11 +14,11 @@ import rx.schedulers.Schedulers;
  * Copyright ©2017 by rawer
  */
 
-public class LoadRepoImpl implements LoadRepo {
+public class DetailRepoImpl implements DetailRepo {
 
     private ApiStore apiStore;
 
-    public LoadRepoImpl() {
+    public DetailRepoImpl() {
         apiStore = ApiFactory.getDefault().buildLoadDataApi();
     }
 

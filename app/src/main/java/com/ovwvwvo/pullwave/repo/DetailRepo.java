@@ -11,7 +11,7 @@ import rx.Observable;
  * Copyright ©2017 by rawer
  */
 
-public interface LoadRepo {
+public interface DetailRepo {
 
     Observable<DataResponse> fetchData(Map<String, String> param, String dateEnd);
 }
