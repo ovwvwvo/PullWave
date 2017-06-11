@@ -6,11 +6,11 @@ import com.ovwvwvo.pullwave.repo.HistoryRepo;
 import java.util.ListIterator;
 
 import io.realm.Realm;
+import io.realm.Sort;
 import rx.Observable;
-import rx.schedulers.Schedulers;
 
 /**
- * Copyright ©2017 by Teambition
+ * Copyright ©2017 by rawer
  */
 
 public class HistoryRepoImpl implements HistoryRepo {
@@ -23,7 +23,20 @@ public class HistoryRepoImpl implements HistoryRepo {
     @Override
     public Observable<ListIterator<History>> findHistory() {
         return realm.asObservable().map(
-            realm1 -> realm1.where(History.class).findAll().listIterator())
-            .subscribeOn(Schedulers.io());
+            realm1 -> realm1.where(History.class).findAll().sort("time", Sort.DESCENDING).listIterator());
+    }
+
+    @Override
+    public void insertModel(History history) {
+        realm.beginTransaction();
+        realm.insertOrUpdate(history);
+        realm.commitTransaction();
+    }
+
+    @Override
+    public void deleteModle(String word) {
+        realm.beginTransaction();
+        realm.where(History.class).equalTo("name", word).findAll().deleteAllFromRealm();
+        realm.commitTransaction();
     }
 }

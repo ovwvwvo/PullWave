@@ -11,9 +11,7 @@ import java.util.ListIterator;
 
 public interface LoadDataView {
 
-    void showProgress();
-
-    void hideProgerss();
+    void showToast(String msg);
 
     void onLoadHistorySuccess(ListIterator<History> historys);
 

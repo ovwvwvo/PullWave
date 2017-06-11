@@ -2,17 +2,20 @@ package com.ovwvwvo.pullwave.activity;
 
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.inputmethod.EditorInfo;
 
-import com.ovwvwvo.jkit.log.LogUtil;
 import com.jaeger.library.StatusBarUtil;
+import com.ovwvwvo.common.activity.BaseActivity;
 import com.ovwvwvo.common.widget.EditText.ClearableEditText;
+import com.ovwvwvo.jkit.utils.KeyBoardUtils;
+import com.ovwvwvo.jkit.weight.ToastMaster;
 import com.ovwvwvo.pullwave.R;
 import com.ovwvwvo.pullwave.adapter.HomeAdapter;
 import com.ovwvwvo.pullwave.model.DataResponse;
@@ -28,7 +31,7 @@ import butterknife.ButterKnife;
 /**
  * Copyright ©2017 by rawer
  */
-public class MainActivity extends AppCompatActivity implements LoadDataView, HomeAdapter.OnClickListener {
+public class MainActivity extends BaseActivity implements LoadDataView, HomeAdapter.OnClickListener {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -39,6 +42,8 @@ public class MainActivity extends AppCompatActivity implements LoadDataView, Hom
 
     private HomePresenter presenter;
     private HomeAdapter adapter;
+
+    private String word;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +62,7 @@ public class MainActivity extends AppCompatActivity implements LoadDataView, Hom
         adapter = new HomeAdapter(this);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
+        recyclerView.setOnCreateContextMenuListener(this);
         searchInput.setOnEditorActionListener((v, actionId, event) -> {
             if (actionId == EditorInfo.IME_ACTION_SEARCH) {
                 presenter.loadData(v.getText().toString().trim());
@@ -64,6 +70,19 @@ public class MainActivity extends AppCompatActivity implements LoadDataView, Hom
             }
             return false;
         });
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        getMenuInflater().inflate(R.menu.menu_history, menu);
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.action_delete)
+            presenter.deleteHistory(word);
+        return super.onContextItemSelected(item);
     }
 
     @Override
@@ -82,19 +101,15 @@ public class MainActivity extends AppCompatActivity implements LoadDataView, Hom
     }
 
     @Override
-    public void showProgress() {
-
-    }
-
-    @Override
-    public void hideProgerss() {
-
+    public void showToast(String msg) {
+        ToastMaster.showToastMsg(msg);
     }
 
     @Override
     public void onLoadHistorySuccess(ListIterator<History> historys) {
-        while (historys.hasNext()) {
-            LogUtil.d("MainActivity", historys.next().getId());
+        if (historys.hasNext()) {
+            adapter.clear();
+            adapter.setModels(historys);
         }
     }
 
@@ -105,6 +120,15 @@ public class MainActivity extends AppCompatActivity implements LoadDataView, Hom
     @Override
     public void onItemClick(String word) {
         searchInput.setText(word);
+        searchInput.setSelection(word.length());
         presenter.loadData(word);
     }
+
+    @Override
+    public void onItemLongClick(String word) {
+        this.word = word;
+        KeyBoardUtils.closeKeybord(this, searchInput);
+        recyclerView.showContextMenu();
+    }
+
 }

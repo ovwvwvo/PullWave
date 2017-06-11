@@ -14,4 +14,7 @@ public interface HistoryRepo {
 
     Observable<ListIterator<History>> findHistory();
 
+    void insertModel(History history);
+
+    void deleteModle(String word);
 }

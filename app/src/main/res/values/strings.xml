@@ -5,4 +5,5 @@
     <string name="search">输入你要查询的词…</string>
 
     <string name="history">最近查询</string>
+    <string name="delete">删除</string>
 </resources>

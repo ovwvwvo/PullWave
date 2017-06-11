@@ -1,10 +1,7 @@
 package com.ovwvwvo.pullwave.model.db;
 
-import java.util.Date;
-
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
-import io.realm.annotations.Required;
 
 /**
  * Copyright ©2017 by rawer
@@ -13,18 +10,15 @@ import io.realm.annotations.Required;
 public class History extends RealmObject {
 
     @PrimaryKey
-    private int id;
-    @Required
     private String name;
-    @Required
-    private Date time;
+    private long time;
 
-    public int getId() {
-        return id;
+    public History() {
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public History(String name, long time) {
+        this.name = name;
+        this.time = time;
     }
 
     public String getName() {
@@ -35,11 +29,11 @@ public class History extends RealmObject {
         this.name = name;
     }
 
-    public Date getTime() {
+    public long getTime() {
         return time;
     }
 
-    public void setTime(Date time) {
+    public void setTime(long time) {
         this.time = time;
     }
 }

@@ -3,6 +3,7 @@ package com.ovwvwvo.pullwave.presenter;
 import android.util.Log;
 
 import com.ovwvwvo.jkit.rx.EmptyObserver;
+import com.ovwvwvo.jkit.utils.StringUtil;
 import com.ovwvwvo.pullwave.logic.HistoryLogic;
 import com.ovwvwvo.pullwave.logic.LoadDataLogic;
 import com.ovwvwvo.pullwave.view.LoadDataView;
@@ -28,21 +29,26 @@ public class HomePresenter extends BasePresenter {
 
     public void findHistory() {
         historyLogic.loadHistory()
-            .doOnSubscribe(view::showProgress)
-            .doOnError(t -> Log.i(getClass().getName(), t.getMessage()))
-            .observeOn(AndroidSchedulers.mainThread())
+            .doOnError(t -> view.showToast(t.getMessage()))
             .doOnNext(view::onLoadHistorySuccess)
-            .doOnTerminate(view::hideProgerss)
             .subscribe(new EmptyObserver<>());
     }
 
-
     public void loadData(String query) {
-        loadDataLogic.loadData(query)
-            .doOnError(t -> Log.i(getClass().getName(), t.getMessage()))
-            .observeOn(AndroidSchedulers.mainThread())
-            .doOnNext(r -> view.onLoadSuccess(r))
-            .subscribe(new EmptyObserver<>());
+        if (!StringUtil.isBlank(query))
+            loadDataLogic.loadData(query)
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnError(t -> Log.i(getClass().getName(), t.getMessage()))
+                .doOnNext(r -> {
+                    historyLogic.insertModel(query);
+                    view.onLoadSuccess(r);
+                })
+                .subscribe(new EmptyObserver<>());
+    }
+
+    public void deleteHistory(String word) {
+        if (!StringUtil.isBlank(word))
+            historyLogic.deleteModel(word);
     }
 
 }
