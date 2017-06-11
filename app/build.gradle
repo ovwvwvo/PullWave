@@ -62,6 +62,7 @@ dependencies {
     compile 'com.ovwvwvo:common:0.1.6'
 
     compile 'com.jaeger.statusbarutil:library:1.4.0'
+    compile 'com.github.PhilJay:MPAndroidChart:v3.0.2'
 
     testCompile 'junit:junit:4.12'
 }

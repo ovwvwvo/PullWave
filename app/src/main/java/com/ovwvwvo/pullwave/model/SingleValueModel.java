@@ -11,7 +11,7 @@ public class SingleValueModel {
     @SerializedName("date")
     String date;
     @SerializedName("v")
-    String v;
+    long v;
 
     public String getDate() {
         return date;
@@ -21,11 +21,11 @@ public class SingleValueModel {
         this.date = date;
     }
 
-    public String getV() {
+    public long getV() {
         return v;
     }
 
-    public void setV(String v) {
+    public void setV(long v) {
         this.v = v;
     }
 }
