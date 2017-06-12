@@ -6,4 +6,6 @@
 
     <string name="history">最近查询</string>
     <string name="delete">删除</string>
+
+    <string name="exponent">指数</string>
 </resources>
