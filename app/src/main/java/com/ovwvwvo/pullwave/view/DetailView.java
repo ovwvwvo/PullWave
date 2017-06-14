@@ -8,6 +8,10 @@ import com.ovwvwvo.pullwave.model.DataResponse;
 
 public interface DetailView {
 
+    void showProgress();
+
+    void hideProgress();
+
     void onLoadSuccess(DataResponse response);
 
 }

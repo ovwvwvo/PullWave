@@ -1,9 +1,11 @@
 package com.ovwvwvo.pullwave.activity;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.components.Description;
@@ -34,28 +36,47 @@ public class DetailActivity extends AppCompatActivity implements DetailView {
     public static final String WORD = "word";
 
     private String word;
-    private DetailPresenter presenter;
+    private ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
         ButterKnife.bind(this);
+        chart.setVisibility(View.GONE);
 
         word = getIntent().getStringExtra(WORD);
-        presenter = new DetailPresenter(this);
+        DetailPresenter presenter = new DetailPresenter(this);
         presenter.loadData(word);
     }
 
     @Override
+    public void showProgress() {
+        if (progressDialog == null) {
+            progressDialog = new ProgressDialog(this);
+        }
+        progressDialog.setMessage(getString(R.string.loading));
+        progressDialog.show();
+    }
+
+    @Override
+    public void hideProgress() {
+        if (progressDialog != null && progressDialog.isShowing()) {
+            progressDialog.dismiss();
+            progressDialog = null;
+        }
+    }
+
+    @Override
     public void onLoadSuccess(DataResponse response) {
+        chart.setVisibility(View.VISIBLE);
         List<BarEntry> entries = new ArrayList<>();
         BarEntry entry;
         for (int i = 0; i < response.getModels().size(); i++) {
             entry = new BarEntry(i, response.getModels().get(i).getV());
             entries.add(entry);
         }
-        BarDataSet set = new BarDataSet(entries, getString(R.string.exponent));
+        BarDataSet set = new BarDataSet(entries, getString(R.string.exponent, word));
         set.setColor(ContextCompat.getColor(this, R.color.colorPrimary));
         BarData barData = new BarData(set);
         chart.setData(barData);

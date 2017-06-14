@@ -30,11 +30,13 @@ public class DetailPresenter extends BasePresenter {
         if (!StringUtil.isBlank(query))
             detailLogic.loadData(query)
                 .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe(() -> view.showProgress())
                 .doOnError(t -> Log.i(getClass().getName(), t.getMessage()))
                 .doOnNext(r -> {
                     historyLogic.insertModel(query);
                     view.onLoadSuccess(r);
                 })
+                .doOnTerminate(() -> view.hideProgress())
                 .subscribe(new EmptyObserver<>());
     }
 }
