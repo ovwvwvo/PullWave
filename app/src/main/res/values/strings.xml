@@ -1,13 +1,14 @@
 <resources>
     <string name="app_name">PullWave</string>
-    <string name="action_settings">Settings</string>
+
+    <string name="action_settings">设置</string>
 
     <string name="search">输入你要查询的词…</string>
-
     <string name="history">最近查询</string>
+
     <string name="delete">删除</string>
 
-    <string name="exponent">\"%s\"指数</string>
-
     <string name="loading">正在加载…</string>
+
+    <string name="exponent">\"%s\"指数</string>
 </resources>

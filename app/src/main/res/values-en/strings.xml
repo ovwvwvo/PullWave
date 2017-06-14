@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">PullWave</string>
+
+    <string name="action_settings">Setting</string>
+
+    <string name="search">Enter your query word…</string>
+    <string name="history">Recent</string>
+
+    <string name="delete">Delete</string>
+
+    <string name="loading">Loading…</string>
+
+    <string name="exponent">\"%s\"Index</string>
+</resources>
