@@ -63,6 +63,7 @@ dependencies {
 
     compile 'com.jaeger.statusbarutil:library:1.4.0'
     compile 'com.github.PhilJay:MPAndroidChart:v3.0.2'
+    compile 'us.feras.mdv:markdownview:1.1.0'
 
     testCompile 'junit:junit:4.12'
 }

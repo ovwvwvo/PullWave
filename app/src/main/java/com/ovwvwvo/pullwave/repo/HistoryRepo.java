@@ -7,7 +7,7 @@ import java.util.ListIterator;
 import rx.Observable;
 
 /**
- * Copyright ©2017 by Teambition
+ * Copyright ©2017 by rawer
  */
 
 public interface HistoryRepo {

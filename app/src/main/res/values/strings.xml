@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">PullWave</string>
 
-    <string name="action_settings">设置</string>
+    <string name="setting">设置</string>
 
     <string name="search">输入你要查询的词…</string>
     <string name="history">最近查询</string>
@@ -11,4 +11,13 @@
     <string name="loading">正在加载…</string>
 
     <string name="exponent">\"%s\"指数</string>
+
+    <string name="about">关于</string>
+    <string name="github">Github</string>
+    <string name="copy">复制链接</string>
+    <string name="copy_tip">已复制</string>
+
+    <string name="github_url">https://github.com/rawer0/PullWave</string>
+    <string name="gotoGithub">前往 GitHub</string>
+
 </resources>

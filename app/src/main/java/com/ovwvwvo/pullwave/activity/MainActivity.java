@@ -95,6 +95,7 @@ public class MainActivity extends BaseActivity implements MainView, HomeAdapter.
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.action_settings) {
+            startActivity(new Intent(this, SettingActivity.class));
             return true;
         }
         return super.onOptionsItemSelected(item);
