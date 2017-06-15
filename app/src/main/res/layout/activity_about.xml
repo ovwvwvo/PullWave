@@ -39,6 +39,5 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/icon"
-        android:layout_marginTop="@dimen/space_large_3"
         android:background="@android:color/white"/>
 </RelativeLayout>
