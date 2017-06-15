@@ -94,4 +94,9 @@ public class DetailActivity extends AppCompatActivity implements DetailView {
 
         chart.invalidate();
     }
+
+    @Override
+    public void onDestroyView() {
+        finish();
+    }
 }

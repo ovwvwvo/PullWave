@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.ovwvwvo.jkit.rx.EmptyObserver;
 import com.ovwvwvo.jkit.utils.StringUtil;
+import com.ovwvwvo.jkit.weight.ToastMaster;
 import com.ovwvwvo.pullwave.logic.DetailLogic;
 import com.ovwvwvo.pullwave.logic.HistoryLogic;
 import com.ovwvwvo.pullwave.view.DetailView;
@@ -31,7 +32,11 @@ public class DetailPresenter extends BasePresenter {
             detailLogic.loadData(query)
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe(() -> view.showProgress())
-                .doOnError(t -> Log.i(getClass().getName(), t.getMessage()))
+                .doOnError(t -> {
+                    Log.i(getClass().getName(), t.getMessage());
+                    ToastMaster.showErrorMsg("msg", t);
+                    view.onDestroyView();
+                })
                 .doOnNext(r -> {
                     historyLogic.insertModel(query);
                     view.onLoadSuccess(r);

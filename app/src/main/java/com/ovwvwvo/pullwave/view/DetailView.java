@@ -14,4 +14,5 @@ public interface DetailView {
 
     void onLoadSuccess(DataResponse response);
 
+    void onDestroyView();
 }
