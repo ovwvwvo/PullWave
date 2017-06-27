@@ -69,4 +69,5 @@ dependencies {
     compile('com.crashlytics.sdk.android:crashlytics:2.6.8@aar') {
         transitive = true;
     }
+    compile 'com.instabug.library:instabug:4.2.0'
 }

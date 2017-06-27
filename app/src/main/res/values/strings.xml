@@ -19,5 +19,6 @@
 
     <string name="github_url">https://github.com/rawer0/PullWave</string>
     <string name="gotoGithub">前往 GitHub</string>
+    <string name="feedback">意见反馈</string>
 
 </resources>

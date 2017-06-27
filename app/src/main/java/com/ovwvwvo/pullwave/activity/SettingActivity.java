@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.instabug.library.Instabug;
 import com.ovwvwvo.jkit.utils.AppUtil;
 import com.ovwvwvo.jkit.weight.ToastMaster;
 import com.ovwvwvo.pullwave.R;
@@ -66,6 +67,10 @@ public class SettingActivity extends AppCompatActivity {
         startActivity(new Intent(this, AboutActivity.class));
     }
 
+    @OnClick(R.id.feedback)
+    void feedback(){
+        Instabug.invoke();
+    }
     private void gotoGithub() {
         Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setData(Uri.parse(getString(R.string.github_url)));
