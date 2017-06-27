@@ -2,9 +2,11 @@ package com.ovwvwvo.pullwave;
 
 import android.app.Application;
 
+import com.crashlytics.android.Crashlytics;
 import com.ovwvwvo.jkit.AppWrapper;
 import com.ovwvwvo.jkit.log.LogUtil;
 
+import io.fabric.sdk.android.Fabric;
 import io.realm.Realm;
 
 /**
@@ -16,6 +18,7 @@ public class MainApp extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        Fabric.with(this, new Crashlytics());
         AppWrapper app = AppWrapper.getInstance();
         app.setAppContext(this);
         LogUtil.setEnable(BuildConfig.DEBUG);
