@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'io.fabric'
 apply plugin: 'me.tatarka.retrolambda'
 apply plugin: 'realm-android'
+apply from: 'version.gradle'
 
 android {
     compileSdkVersion 25
@@ -10,8 +11,8 @@ android {
         applicationId "com.ovwvwvo.pullwave"
         minSdkVersion 15
         targetSdkVersion 25
-        versionCode 1
-        versionName "v0.1"
+        versionCode appVersionCode
+        versionName appVersionName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     lintOptions {

@@ -1,0 +1,22 @@
+def gitVersionCode() {
+    def cmd = 'git rev-list HEAD  --count'
+    return cmd.execute().text.trim().toInteger()
+}
+
+def gitVersionName() {
+    def cmd = 'git describe --tags'
+    def versionName = cmd.execute().text.trim()
+
+    def pattern = "-(\\d+)-g"
+    def matcher = versionName =~ pattern
+
+    if (matcher) {
+        versionName = versionName.substring(0, matcher.start() + 1) + versionName.substring(matcher.end())
+    }
+    return versionName
+}
+
+ext {
+    appVersionCode = this.&gitVersionCode()
+    appVersionName = this.&gitVersionName()
+}
