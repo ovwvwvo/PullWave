@@ -21,8 +21,21 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    
+    signingConfigs {
+        release {
+            storeFile file("keystore/keystore.jks")
+            storePassword "$System.env.STORE_PASSWORD"
+            keyAlias "$System.env.KEY_ALIAS"
+            keyPassword "$System.env.KEY_PASSWORD"
+            v2SigningEnabled true
+        }
+    }
+
     buildTypes {
         release {
+            signingConfig signingConfigs.release
+
             minifyEnabled true
             zipAlignEnabled true
             shrinkResources true
